@@ -125,7 +125,56 @@ def subnet_calc():
     
         #print binary_ip   #Example: for 192.168.2.100 => 11000000101010000000001001100100
         
+
+
+        #Obtain the network address and broadcast address from the binary strings obtained above
+        network_address_binary = binary_ip[:(no_of_ones)] + "0" * no_of_zeros
+        #print network_address_binary
         
+        broadcast_address_binary = binary_ip[:(no_of_ones)] + "1" * no_of_zeros
+        #print broadcast_address_binary
+        
+        #to convert in readable ip adress
+        net_ip_octets = []
+        for octet in range(0, len(network_address_binary), 8): 	#Example for range(0,32,8) => [0, 8 , 16, 24]
+            net_ip_octet = network_address_binary[octet:octet+8]
+            net_ip_octets.append(net_ip_octet)
+        #sliced the binary valur into a string
+        #print net_ip_octets
+        
+        #converted to decimals and then to a string format ['1', '1', '1', '0']
+        net_ip_address = []
+        for each_octet in net_ip_octets:
+            net_ip_address.append(str(int(each_octet, 2)))
+            
+        #print net_ip_address
+        
+        #getting network_address in decimal 1.1.1.0 
+        network_address = ".".join(net_ip_address)
+        #print network_address
+        
+
+        bst_ip_octets = []
+        for octet in range(0, len(broadcast_address_binary), 8):
+            bst_ip_octet = broadcast_address_binary[octet:octet+8]
+            bst_ip_octets.append(bst_ip_octet)
+        
+        #print bst_ip_octets
+        
+        
+        bst_ip_address = []
+        for each_octet in bst_ip_octets:
+            bst_ip_address.append(str(int(each_octet, 2)))
+            
+        #print bst_ip_address
+        
+        #
+        broadcast_address = ".".join(bst_ip_address)
+        #print broadcast_address
+        
+        
+	
+
     except KeyboardInterrupt:
         print "\n\nProgram aborted by user. Exiting...\n"
         sys.exit()
