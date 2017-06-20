@@ -172,6 +172,15 @@ def subnet_calc():
         broadcast_address = ".".join(bst_ip_address)
         #print broadcast_address
         
+
+        #Results for selected IP/mask
+        print "\n"
+        print "Network address is: %s" % network_address
+        print "Broadcast address is: %s" % broadcast_address
+        print "Number of valid hosts per subnet: %s" % no_of_hosts
+        print "Wildcard mask: %s" % wildcard_mask
+        print "Mask bits: %s" % no_of_ones
+        print "\n"
         
 	
 
