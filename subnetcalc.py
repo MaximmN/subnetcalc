@@ -40,7 +40,8 @@ def subnet_calc():
                 print "\nThe subnet mask is INVALID! Please retry!\n"
                 # redirect the user to the top of while loop
                 continue
-	         
+	      
+
 	# Part 2.
 		 
         #Algorithm for subnet identification, based on IP and Subnet Mask
@@ -99,8 +100,32 @@ def subnet_calc():
         wildcard_mask = ".".join(wildcard_octets)
         #Example: for 255.255.255.0 => 0.0.0.255
         #print wildcard_mask
+        
 
-
+        # Part 3.
+        
+        #Convert IP to binary string
+        ip_octets_padded = []
+        ip_octets_decimal = ip_address.split(".")
+        
+        for octet_index in range(0, len(ip_octets_decimal)):
+            
+            binary_octet = bin(int(ip_octets_decimal[octet_index])).split("b")[1]
+            
+            if len(binary_octet) < 8:
+                binary_octet_padded = binary_octet.zfill(8)
+                ip_octets_padded.append(binary_octet_padded)
+            
+            else:
+                ip_octets_padded.append(binary_octet)
+    
+        #print ip_octets_padded
+        
+        binary_ip = "".join(ip_octets_padded)
+    
+        #print binary_ip   #Example: for 192.168.2.100 => 11000000101010000000001001100100
+        
+        
     except KeyboardInterrupt:
         print "\n\nProgram aborted by user. Exiting...\n"
         sys.exit()
