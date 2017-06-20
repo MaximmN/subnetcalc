@@ -23,3 +23,20 @@ def subnet_calc():
 				print "\nThe IP address is INVALID! Please retry!\n"
 				# redirect the user to the top of while loop
 				continue
+
+		masks = [255, 254, 252, 248, 240, 224, 192, 128, 0]
+
+		# Checking Subnet Mask validity
+		while T:
+			subnet_mask = raw_input("Enter a subnet mask: ")
+
+			# Checking octets
+			b = subnet_mask.split('.')
+
+			if (len(b) == 4) and (int(b[0]) == 255) and (int(b[1]) in masks) and (int(b[2]) in masks) and (int(b[3]) in masks) and (int(b[0]) >= int(b[1]) >= int(b[2]) >= int(b[3])):
+				break
+
+			else:
+				print "\nThe subnet mask is INVALID! Please retry!\n"
+				# redirect the user to the top of while loop
+				continue
