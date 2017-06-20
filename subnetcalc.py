@@ -85,7 +85,22 @@ def subnet_calc():
         #print no_of_ones
         #print no_of_hosts
         
-    
+
+
+        #Obtaining wildcard mask
+        wildcard_octets = []
+        for w_octet in mask_octets_decimal:
+            wild_octet = 255 - int(w_octet)
+            wildcard_octets.append(str(wild_octet))
+        
+        #Example: for 255.255.255.0 => ['0','0','0','255']    
+        #print wildcard_octets
+        
+        wildcard_mask = ".".join(wildcard_octets)
+        #Example: for 255.255.255.0 => 0.0.0.255
+        #print wildcard_mask
+
+
     except KeyboardInterrupt:
         print "\n\nProgram aborted by user. Exiting...\n"
         sys.exit()
