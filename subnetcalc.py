@@ -1,4 +1,4 @@
-# Part 1
+	# Part 1.
 
 import random
 import sys
@@ -23,6 +23,8 @@ def subnet_calc():
                 # redirect the user to the top of while loop
                 continue
         
+
+
         masks = [255, 254, 252, 248, 240, 224, 192, 128, 0]
         
         #Checking Subnet Mask validity
@@ -38,7 +40,40 @@ def subnet_calc():
                 print "\nThe subnet mask is INVALID! Please retry!\n"
                 # redirect the user to the top of while loop
                 continue
-    
+	         
+	# Part 2.
+		 
+        #Algorithm for subnet identification, based on IP and Subnet Mask
+        
+        #Convert mask to binary string
+        mask_octets_padded = []
+        mask_octets_decimal = subnet_mask.split(".") # list of mask "b"
+        #print mask_octets_decimal
+        
+        for octet_index in range(0, len(mask_octets_decimal)):
+            
+            #print in binary value
+            #print bin(int(mask_octets_decimal[octet_index]))
+            
+            #print 8 bits in 1st 3 octets and 1 bit in 4th
+            binary_octet = bin(int(mask_octets_decimal[octet_index])).split("b")[1]
+            #print binary_octet
+            
+            #print octets in a list with filled 0 to 8 numbers in 4th octet
+            if len(binary_octet) == 8:
+                mask_octets_padded.append(binary_octet)
+            
+            elif len(binary_octet) < 8:
+            	#zfill fills octets with 0 until up to this length
+                binary_octet_padded = binary_octet.zfill(8)
+                mask_octets_padded.append(binary_octet_padded)
+                
+        #print mask_octets_padded
+        
+
+        decimal_mask = "".join(mask_octets_padded)
+        #print decimal_mask   #Example: for 255.255.255.0 => 11111111111111111111111100000000
+   
     except KeyboardInterrupt:
         print "\n\nProgram aborted by user. Exiting...\n"
         sys.exit()
